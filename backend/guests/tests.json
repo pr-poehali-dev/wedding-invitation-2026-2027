@@ -1,0 +1,21 @@
+{
+  "tests": [
+    {
+      "name": "Add new guest",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Иван Петров",
+        "phone": "+79991234567",
+        "message": "С радостью приду!"
+      },
+      "expectedStatus": 201
+    },
+    {
+      "name": "Get all guests",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200
+    }
+  ]
+}

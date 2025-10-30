@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     setIsVisible(true);
@@ -10,6 +14,49 @@ const Index = () => {
   const weddingDate = new Date(2026, 7, 22);
   const today = new Date();
   const daysUntil = Math.ceil((weddingDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.name.trim()) {
+      toast({
+        title: 'Ошибка',
+        description: 'Пожалуйста, укажите ваше имя',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('https://functions.poehali.dev/0b1d2bee-ab26-42ee-995c-87c7c8e66eba', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        toast({
+          title: 'Спасибо!',
+          description: 'Ваша анкета успешно отправлена',
+        });
+        setFormData({ name: '', phone: '', message: '' });
+      } else {
+        throw new Error('Ошибка отправки');
+      }
+    } catch (error) {
+      toast({
+        title: 'Ошибка',
+        description: 'Не удалось отправить анкету. Попробуйте позже.',
+        variant: 'destructive'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -210,26 +257,37 @@ const Index = () => {
             <p className="text-sm text-muted-foreground mb-6">
               Подтвердите ваше присутствие
             </p>
-            <div className="space-y-3 max-w-sm mx-auto mb-6">
+            <form onSubmit={handleSubmit} className="space-y-3 max-w-sm mx-auto mb-6">
               <input 
                 type="text" 
                 placeholder="Ваше имя" 
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full px-4 py-3 bg-card/60 border border-muted rounded-lg text-sm"
+                required
               />
               <input 
                 type="text" 
                 placeholder="Твой номер телефона" 
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 className="w-full px-4 py-3 bg-card/60 border border-muted rounded-lg text-sm"
               />
               <textarea 
                 placeholder="Что пожелаете" 
                 rows={3}
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 className="w-full px-4 py-3 bg-card/60 border border-muted rounded-lg text-sm"
               />
-              <button className="w-full px-4 py-3 bg-accent text-accent-foreground rounded-lg text-sm font-medium hover:bg-accent/90 transition-colors">
-                Отправить
+              <button 
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full px-4 py-3 bg-accent text-accent-foreground rounded-lg text-sm font-medium hover:bg-accent/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? 'Отправка...' : 'Отправить'}
               </button>
-            </div>
+            </form>
           </section>
 
           <section className="text-center pb-12">
