@@ -19,7 +19,7 @@ const Index = () => {
       <section className="min-h-screen flex items-center justify-center px-4 py-20">
         <div className={`text-center max-w-3xl transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h1 className="text-7xl md:text-9xl font-light mb-6 text-foreground tracking-wide">
-            Анна & Максим
+            Руслан & Вероника
           </h1>
           <div className="font-handwriting text-4xl md:text-5xl text-muted-foreground mb-8">
             Save the date
@@ -230,7 +230,7 @@ const Index = () => {
           </div>
           <p className="text-lg text-muted-foreground mb-8">
             Будем рады видеть вас на нашем празднике.<br />
-            С любовью, Анна и Максим
+            С любовью, Руслан и Вероника
           </p>
           <Icon name="Heart" className="text-accent mx-auto" size={32} />
         </div>
