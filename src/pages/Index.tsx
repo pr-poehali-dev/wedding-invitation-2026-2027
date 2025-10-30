@@ -1,7 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
-import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,225 +13,207 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <section className="min-h-screen flex items-center justify-center px-4 py-20">
-        <div className={`text-center max-w-3xl transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h1 className="text-7xl md:text-9xl font-light mb-6 text-foreground tracking-wide">
-            Руслан & Вероника
-          </h1>
-          <div className="font-handwriting text-4xl md:text-5xl text-muted-foreground mb-8">
-            Save the date
+      <div className="max-w-2xl mx-auto px-6 py-12">
+        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-light mb-4 tracking-widest uppercase text-foreground/80">
+              Сайт-приглашение
+            </h1>
+            <div className="font-handwriting text-5xl md:text-6xl text-foreground/70">
+              на свадьбу
+            </div>
           </div>
-          <div className="text-6xl md:text-7xl font-light text-accent mb-6">
-            22.08.2026
-          </div>
-          <p className="text-lg text-muted-foreground">
-            {daysUntil > 0 ? `Через ${daysUntil} дней` : 'Сегодня!'}
-          </p>
-        </div>
-      </section>
 
-      <section className="py-20 px-4 bg-card">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-light text-center mb-16 text-foreground">
-            Наша история
-          </h2>
-          <div className="space-y-12">
-            <div className="animate-fade-in">
-              <div className="flex items-start gap-6">
-                <div className="flex-shrink-0 w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center">
-                  <Icon name="Heart" className="text-accent" size={28} />
+          <div className="bg-card p-8 md:p-12 mb-8 shadow-sm border-2 border-accent/30">
+            <h2 className="text-3xl font-light mb-6 text-center uppercase tracking-wide">
+              Любовь — это...
+            </h2>
+            
+            <div className="relative mb-8">
+              <div className="font-handwriting text-accent text-4xl md:text-5xl absolute inset-0 flex items-center justify-center opacity-20 leading-relaxed whitespace-pre-wrap text-center">
+                I Love You I Love You I Love You I Love You I Love You
+              </div>
+              <div className="relative z-10 bg-card/90 p-4 mx-auto max-w-sm">
+                <div className="aspect-[3/4] bg-muted flex items-center justify-center">
+                  <span className="text-muted-foreground text-sm">Фото пары</span>
                 </div>
-                <div>
-                  <div className="font-handwriting text-2xl text-accent mb-2">2020</div>
-                  <h3 className="text-2xl font-medium mb-3">Встреча</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Мы встретились теплым летним вечером в парке. Это была случайная встреча, которая изменила нашу жизнь навсегда.
+              </div>
+            </div>
+
+            <p className="text-center text-sm leading-relaxed text-muted-foreground mb-8">
+              ...совместные мечты
+            </p>
+
+            <div className="relative mb-8">
+              <div className="bg-accent w-full h-48 relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 bg-card h-16 rounded-b-[50%]"></div>
+                <div className="absolute inset-0 flex items-center justify-center text-card p-8">
+                  <p className="text-sm text-center leading-relaxed">
+                    Рады пригласить вас разделить с нами<br />
+                    один из самых важных дней в нашей жизни.<br />
+                    Ждём вас на нашей свадьбе!
+                  </p>
+                </div>
+              </div>
+              <div className="text-center font-handwriting text-xl text-foreground mt-4">
+                Руслан и Вероника
+              </div>
+            </div>
+
+            <div className="mb-8">
+              <div className="flex justify-center gap-4 mb-4">
+                <div className="text-center">
+                  <div className="text-sm uppercase text-muted-foreground mb-2">Пятница</div>
+                  <div className="text-4xl font-light border-4 border-foreground w-24 h-24 flex items-center justify-center">
+                    4
+                  </div>
+                  <div className="text-sm uppercase text-muted-foreground mt-2">июля</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-sm uppercase text-muted-foreground mb-2">Суббота</div>
+                  <div className="text-4xl font-light border-4 border-accent w-24 h-24 flex items-center justify-center relative">
+                    <span className="relative z-10">5</span>
+                    <div className="absolute inset-0 border-4 border-accent rounded-full scale-125"></div>
+                  </div>
+                  <div className="text-sm uppercase text-muted-foreground mt-2">июля</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-sm uppercase text-muted-foreground mb-2">Воскресенье</div>
+                  <div className="text-4xl font-light border-4 border-foreground w-24 h-24 flex items-center justify-center">
+                    6
+                  </div>
+                  <div className="text-sm uppercase text-muted-foreground mt-2">июля</div>
+                </div>
+              </div>
+              <div className="text-center font-handwriting text-2xl text-foreground/70">
+                Ближе очень будет!
+              </div>
+            </div>
+
+            <div className="bg-secondary/30 p-6 mb-8 relative">
+              <svg className="absolute top-0 left-0 w-full h-full" style={{ fill: 'none', stroke: 'hsl(var(--accent))', strokeWidth: 2 }}>
+                <path d="M 0,50 Q 100,20 200,50 T 400,50" />
+              </svg>
+              <p className="text-sm leading-relaxed text-center relative z-10">
+                Торжественная церемония<br />
+                и последующий уютный вечер будут<br />
+                проходить на одной площадке:<br />
+                <strong>"All Seasons"</strong><br />
+                по адресу: ул. Большая<br />
+                Морская, 33а
+              </p>
+            </div>
+
+            <div className="mb-8">
+              <div className="aspect-[3/4] bg-muted flex items-center justify-center mb-4">
+                <span className="text-muted-foreground text-sm">Фото церемонии</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-card p-8 md:p-12 mb-8 shadow-sm border-2 border-accent/30">
+            <h2 className="text-3xl font-light mb-8 text-center uppercase tracking-wide">
+              Пожелания
+            </h2>
+
+            <div className="space-y-6 mb-8">
+              <div className="border-2 border-accent/40 rounded-[30px] p-6">
+                <div className="flex gap-3">
+                  <span className="text-2xl font-handwriting text-accent">1</span>
+                  <p className="text-sm leading-relaxed">
+                    Чтобы наши руки были свободны для объятий, будем рады подарку подъезда в конвертике!
+                  </p>
+                </div>
+              </div>
+
+              <div className="border-2 border-accent/40 rounded-[30px] p-6">
+                <div className="flex gap-3">
+                  <span className="text-2xl font-handwriting text-accent">2</span>
+                  <p className="text-sm leading-relaxed">
+                    Не переживайте: мы не будем выкидывать гостей, говорить поздравления и петь песни, свадьба будет действовать в спокойном формате!
+                  </p>
+                </div>
+              </div>
+
+              <div className="border-2 border-accent/40 rounded-[30px] p-6">
+                <div className="flex gap-3">
+                  <span className="text-2xl font-handwriting text-accent">3</span>
+                  <p className="text-sm leading-relaxed">
+                    Если вы хотите преподнести нам цветы - то пусть это будет одна или более роза, пожалуйста без букетов, доставайте букет!
+                  </p>
+                </div>
+              </div>
+
+              <div className="border-2 border-accent/40 rounded-[30px] p-6">
+                <div className="flex gap-3">
+                  <span className="text-2xl font-handwriting text-accent">4</span>
+                  <p className="text-sm leading-relaxed">
+                    Для наших маленьких гостей мы предусмотрели няню с анимацией, чтобы родители могли насладиться праздником!
                   </p>
                 </div>
               </div>
             </div>
 
-            <Separator />
-
-            <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <div className="flex items-start gap-6">
-                <div className="flex-shrink-0 w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center">
-                  <Icon name="Coffee" className="text-accent" size={28} />
-                </div>
-                <div>
-                  <div className="font-handwriting text-2xl text-accent mb-2">2022</div>
-                  <h3 className="text-2xl font-medium mb-3">Первое путешествие</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Наше первое совместное путешествие показало, что мы идеально подходим друг другу. Мы открыли новые горизонты вместе.
-                  </p>
-                </div>
+            <div className="text-center mb-8">
+              <div className="font-handwriting text-3xl text-foreground/70 mb-4">
+                О Контактах
               </div>
-            </div>
-
-            <Separator />
-
-            <div className="animate-fade-in" style={{ animationDelay: '0.4s' }}>
-              <div className="flex items-start gap-6">
-                <div className="flex-shrink-0 w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center">
-                  <Icon name="Sparkles" className="text-accent" size={28} />
-                </div>
-                <div>
-                  <div className="font-handwriting text-2xl text-accent mb-2">2025</div>
-                  <h3 className="text-2xl font-medium mb-3">Предложение</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    На закате у моря прозвучал тот самый вопрос. Конечно, ответ был «Да!». Теперь мы готовы начать новую главу вместе.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-light text-center mb-16 text-foreground">
-            Детали
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="p-8 text-center hover:shadow-lg transition-shadow border-border/50">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-accent/10 flex items-center justify-center">
-                <Icon name="MapPin" className="text-accent" size={28} />
-              </div>
-              <h3 className="text-2xl font-medium mb-3">Место</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Загородный клуб<br />
-                «Усадьба»<br />
-                Московская область
+              <p className="text-sm leading-relaxed text-muted-foreground mb-4">
+                На все вопросы Вы можете<br />
+                написать нашему<br />
+                свадебному организатору:<br />
+                <strong>Юлия</strong>
               </p>
-            </Card>
-
-            <Card className="p-8 text-center hover:shadow-lg transition-shadow border-border/50">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-accent/10 flex items-center justify-center">
-                <Icon name="Clock" className="text-accent" size={28} />
-              </div>
-              <h3 className="text-2xl font-medium mb-3">Время</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Сбор гостей<br />
-                15:00<br />
-                Церемония в 16:00
-              </p>
-            </Card>
-
-            <Card className="p-8 text-center hover:shadow-lg transition-shadow border-border/50">
-              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-accent/10 flex items-center justify-center">
-                <Icon name="Shirt" className="text-accent" size={28} />
-              </div>
-              <h3 className="text-2xl font-medium mb-3">Дресс-код</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Элегантный casual<br />
-                Светлые тона<br />
-                Без белого
-              </p>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-4 bg-card">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-light text-center mb-16 text-foreground">
-            Программа дня
-          </h2>
-          <div className="space-y-6">
-            <div className="flex gap-6 items-start group">
-              <div className="flex-shrink-0 text-right w-24">
-                <span className="text-2xl font-light text-accent">15:00</span>
-              </div>
-              <div className="flex-shrink-0 w-px h-full bg-border relative">
-                <div className="w-3 h-3 rounded-full bg-accent absolute -left-1.5 top-2"></div>
-              </div>
-              <div className="flex-1 pb-8">
-                <h3 className="text-2xl font-medium mb-2">Сбор гостей</h3>
-                <p className="text-muted-foreground">Встреча гостей, приветственные напитки</p>
+              <div className="flex justify-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-card">
+                  <span className="text-sm">📱</span>
+                </div>
+                <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-card">
+                  <span className="text-sm">💬</span>
+                </div>
               </div>
             </div>
 
-            <div className="flex gap-6 items-start group">
-              <div className="flex-shrink-0 text-right w-24">
-                <span className="text-2xl font-light text-accent">16:00</span>
+            <div className="relative mb-8">
+              <div className="font-handwriting text-accent text-4xl md:text-5xl absolute inset-0 flex items-center justify-center opacity-20 leading-relaxed">
+                Cheers! Cheers! Cheers! Cheers!
               </div>
-              <div className="flex-shrink-0 w-px h-full bg-border relative">
-                <div className="w-3 h-3 rounded-full bg-accent absolute -left-1.5 top-2"></div>
-              </div>
-              <div className="flex-1 pb-8">
-                <h3 className="text-2xl font-medium mb-2">Церемония</h3>
-                <p className="text-muted-foreground">Официальная часть на открытом воздухе</p>
+              <div className="relative z-10 bg-card/90 p-4 mx-auto max-w-sm">
+                <div className="aspect-[3/4] bg-muted flex items-center justify-center">
+                  <span className="text-muted-foreground text-sm">Фото с бокалами</span>
+                </div>
               </div>
             </div>
 
-            <div className="flex gap-6 items-start group">
-              <div className="flex-shrink-0 text-right w-24">
-                <span className="text-2xl font-light text-accent">17:00</span>
-              </div>
-              <div className="flex-shrink-0 w-px h-full bg-border relative">
-                <div className="w-3 h-3 rounded-full bg-accent absolute -left-1.5 top-2"></div>
-              </div>
-              <div className="flex-1 pb-8">
-                <h3 className="text-2xl font-medium mb-2">Фуршет</h3>
-                <p className="text-muted-foreground">Легкие закуски и напитки в саду</p>
+            <div className="text-center text-sm leading-relaxed text-muted-foreground mb-8">
+              Для подтверждения<br />
+              присутствия заполните для нас<br />
+              кружочек с фразой "Горько!"
+            </div>
+
+            <div className="mb-8">
+              <div className="aspect-[3/4] bg-muted flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Фото пары</span>
               </div>
             </div>
 
-            <div className="flex gap-6 items-start group">
-              <div className="flex-shrink-0 text-right w-24">
-                <span className="text-2xl font-light text-accent">18:30</span>
+            <div className="text-center">
+              <div className="font-handwriting text-4xl text-accent mb-2">
+                With Love
               </div>
-              <div className="flex-shrink-0 w-px h-full bg-border relative">
-                <div className="w-3 h-3 rounded-full bg-accent absolute -left-1.5 top-2"></div>
-              </div>
-              <div className="flex-1 pb-8">
-                <h3 className="text-2xl font-medium mb-2">Банкет</h3>
-                <p className="text-muted-foreground">Праздничный ужин и развлечения</p>
-              </div>
-            </div>
-
-            <div className="flex gap-6 items-start group">
-              <div className="flex-shrink-0 text-right w-24">
-                <span className="text-2xl font-light text-accent">21:00</span>
-              </div>
-              <div className="flex-shrink-0 w-px h-full bg-border relative">
-                <div className="w-3 h-3 rounded-full bg-accent absolute -left-1.5 top-2"></div>
-              </div>
-              <div className="flex-1 pb-8">
-                <h3 className="text-2xl font-medium mb-2">Танцы</h3>
-                <p className="text-muted-foreground">Танцпол открыт до утра</p>
-              </div>
-            </div>
-
-            <div className="flex gap-6 items-start group">
-              <div className="flex-shrink-0 text-right w-24">
-                <span className="text-2xl font-light text-accent">00:00</span>
-              </div>
-              <div className="flex-shrink-0 w-px h-full bg-border relative">
-                <div className="w-3 h-3 rounded-full bg-accent absolute -left-1.5 top-2"></div>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-2xl font-medium mb-2">Торт и салют</h3>
-                <p className="text-muted-foreground">Финальный аккорд вечера</p>
+              <div className="text-xl font-light tracking-widest uppercase">
+                Руслан и Вероника
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section className="py-20 px-4 text-center">
-        <div className="max-w-2xl mx-auto">
-          <div className="font-handwriting text-4xl md:text-5xl text-muted-foreground mb-8">
-            До встречи!
+          <div className="text-center text-sm text-muted-foreground py-8">
+            <p className="mb-2">22 августа 2026</p>
+            <p>{daysUntil > 0 ? `Осталось дней: ${daysUntil}` : 'Сегодня!'}</p>
           </div>
-          <p className="text-lg text-muted-foreground mb-8">
-            Будем рады видеть вас на нашем празднике.<br />
-            С любовью, Руслан и Вероника
-          </p>
-          <Icon name="Heart" className="text-accent mx-auto" size={32} />
         </div>
-      </section>
+      </div>
     </div>
   );
 };
