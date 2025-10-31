@@ -115,3 +115,111 @@
     font-family: "Caveat", cursive;
   }
 }
+
+@layer utilities {
+  @keyframes float-slow {
+    0%,
+    100% {
+      transform: translateY(0) translateX(0);
+    }
+    50% {
+      transform: translateY(-20px) translateX(10px);
+    }
+  }
+
+  @keyframes float-slower {
+    0%,
+    100% {
+      transform: translateY(0) translateX(0);
+    }
+    50% {
+      transform: translateY(15px) translateX(-15px);
+    }
+  }
+
+  @keyframes pulse-slow {
+    0%,
+    100% {
+      opacity: 0.03;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.08;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes pulse-slower {
+    0%,
+    100% {
+      opacity: 0.04;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.1;
+      transform: scale(1.08);
+    }
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes wave {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(-25px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes draw {
+    0% {
+      stroke-dasharray: 0, 1000;
+    }
+    100% {
+      stroke-dasharray: 1000, 0;
+    }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 8s ease-in-out infinite;
+  }
+
+  .animate-float-slower {
+    animation: float-slower 10s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-slower {
+    animation: pulse-slower 8s ease-in-out infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+
+  .animate-wave {
+    animation: wave 4s ease-in-out infinite;
+  }
+
+  .animate-draw {
+    animation: draw 3s ease-in-out infinite;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
