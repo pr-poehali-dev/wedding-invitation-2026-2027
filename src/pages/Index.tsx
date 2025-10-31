@@ -11,10 +11,6 @@ const Index = () => {
     setIsVisible(true);
   }, []);
 
-  const weddingDate = new Date(2026, 7, 22);
-  const today = new Date();
-  const daysUntil = Math.ceil((weddingDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -58,212 +54,157 @@ const Index = () => {
     }
   };
 
+  const generateCalendar = () => {
+    const days = [];
+    const daysInMonth = 31;
+    const startDay = 4;
+    
+    const dayNames = ['ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС', 'ПН'];
+    
+    for (let i = 0; i < startDay; i++) {
+      days.push(<div key={`empty-${i}`} className="h-10"></div>);
+    }
+    
+    for (let day = 1; day <= daysInMonth; day++) {
+      days.push(
+        <div key={day} className="h-10 flex items-center justify-center text-lg relative">
+          {day === 22 && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-8 h-8 bg-[#DC143C] rounded-full flex items-center justify-center transform -rotate-12">
+                <span className="text-white text-sm font-bold">♥</span>
+              </div>
+            </div>
+          )}
+          <span className={day === 22 ? 'relative z-10 text-white font-semibold' : ''}>{day}</span>
+        </div>
+      );
+    }
+    
+    return days;
+  };
+
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-xl mx-auto px-6 py-12">
-        <div className={`space-y-16 transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+    <div className="min-h-screen bg-[#F5EBE0] overflow-hidden">
+      <div className="max-w-2xl mx-auto px-4 py-8">
+        <div className={`space-y-12 transition-all duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
           
-          <section className="relative">
-            <h2 className="text-2xl font-light mb-8 text-muted-foreground">Мы женимся ...</h2>
-            <div className="relative">
-              <div className="font-handwriting text-accent text-3xl absolute inset-0 opacity-10 whitespace-pre-wrap leading-relaxed">
-                I Love You I Love You I Love You I Love You I Love You I Love You
-              </div>
-              <div className="relative z-10 max-w-xs mx-auto transform rotate-3">
-                <div className="bg-white p-3 shadow-lg">
-                  <div className="aspect-[3/4] bg-gray-200 flex items-center justify-center">
-                    <span className="text-gray-400 text-sm">Фото пары</span>
-                  </div>
-                </div>
+          <section className="relative min-h-[60vh] flex items-center justify-center">
+            <div 
+              className="absolute inset-0 font-handwriting text-[#DC143C] text-4xl opacity-40 pointer-events-none"
+              style={{
+                backgroundImage: `repeating-linear-gradient(
+                  45deg,
+                  transparent,
+                  transparent 50px,
+                  rgba(220, 20, 60, 0.1) 50px,
+                  rgba(220, 20, 60, 0.1) 100px
+                )`
+              }}
+            >
+              <div className="absolute top-8 left-4 transform rotate-12">I Love You</div>
+              <div className="absolute top-32 right-8 transform -rotate-6">I Love You</div>
+              <div className="absolute bottom-32 left-12 transform rotate-3">I Love You</div>
+              <div className="absolute top-1/2 left-1/4 transform -rotate-12">I Love You</div>
+              <div className="absolute bottom-12 right-16 transform rotate-6">I Love You</div>
+            </div>
+            
+            <div className="relative z-10 transform rotate-6 hover:rotate-3 transition-transform duration-500">
+              <div className="bg-white p-4 shadow-2xl max-w-sm">
+                <img 
+                  src="https://cdn.poehali.dev/files/22a024cd-2711-4e43-845d-6e9b35ba1cf6.png" 
+                  alt="Руслан и Вероника" 
+                  className="w-full aspect-[3/4] object-cover"
+                />
               </div>
             </div>
           </section>
 
-          <section className="relative">
-            <div className="bg-accent/90 p-8 relative overflow-hidden max-w-sm mx-auto transform -rotate-2 shadow-lg">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-12 bg-accent-foreground/20 rounded-full flex items-center justify-center">
-                <div className="w-6 h-6 border-2 border-accent-foreground/40 rounded-full"></div>
-              </div>
-              <div className="relative z-10 text-accent-foreground text-center pt-4">
-                <p className="text-sm leading-relaxed mb-4">
-                  Мы так рады пригласить вас разделить с нами 
-                  один из самых важных дней в нашей жизни. 
-                  Ждём вас на нашей свадьбе!
-                </p>
-                <div className="font-handwriting text-2xl">
-                  Руслан и Вероника
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-light mb-6 text-muted-foreground">Когда?</h2>
-            <div className="flex justify-center gap-3 mb-4">
-              <div className="text-center">
-                <div className="text-xs uppercase text-muted-foreground mb-1">Воскресенье</div>
-                <div className="text-3xl font-light border-2 border-foreground/30 w-16 h-16 flex items-center justify-center">
-                  6
-                </div>
-                <div className="text-xs uppercase text-muted-foreground mt-1">июля</div>
-              </div>
-              <div className="text-center relative">
-                <div className="text-xs uppercase text-muted-foreground mb-1">Понедельник</div>
-                <div className="text-3xl font-light border-2 border-foreground/30 w-16 h-16 flex items-center justify-center relative z-10">
-                  7
-                </div>
-                <svg className="absolute inset-0 w-full h-full -z-10" viewBox="0 0 80 80">
-                  <path d="M 10,40 Q 40,60 70,40 T 70,10" fill="none" stroke="hsl(var(--accent))" strokeWidth="3" />
-                </svg>
-                <div className="text-xs uppercase text-muted-foreground mt-1">июля</div>
-              </div>
-              <div className="text-center">
-                <div className="text-xs uppercase text-muted-foreground mb-1">Вторник</div>
-                <div className="text-3xl font-light border-2 border-foreground/30 w-16 h-16 flex items-center justify-center">
-                  8
-                </div>
-                <div className="text-xs uppercase text-muted-foreground mt-1">июля</div>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-light mb-6 text-muted-foreground">Где?</h2>
-            <div className="relative max-w-sm mx-auto">
-              <svg className="absolute -left-8 top-0 w-16 h-24" viewBox="0 0 60 100">
-                <path d="M 50,0 Q 30,30 30,60 L 30,100" fill="none" stroke="hsl(var(--accent))" strokeWidth="2" strokeDasharray="5,5" />
-                <circle cx="30" cy="100" r="8" fill="hsl(var(--accent))" />
-                <circle cx="30" cy="100" r="12" fill="none" stroke="hsl(var(--accent))" strokeWidth="2" />
-              </svg>
-              <div className="bg-card/80 p-6 text-sm leading-relaxed text-muted-foreground">
-                Милый вечер будет проходить по адресу ул. Малая Семёновская д. 3, стр. 29
-                <br /><br />
-                Лофт оранжевый с летней верандой
-              </div>
-            </div>
-            <div className="mt-8 max-w-xs mx-auto transform -rotate-1">
-              <div className="bg-white p-3 shadow-lg">
-                <div className="aspect-[3/4] bg-gray-200 flex items-center justify-center">
-                  <span className="text-gray-400 text-sm">Фото места</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-light mb-6 text-muted-foreground">Программа дня</h2>
-            <div className="space-y-4 text-sm">
-              <div className="flex items-start gap-4">
-                <div className="w-20 text-right text-muted-foreground flex-shrink-0">
-                  <div className="font-light">Сбор гостей</div>
-                  <div className="text-xs">10:00 - 11:30</div>
-                </div>
-                <div className="flex-1 border-l-2 border-accent/30 pl-4 pb-2"></div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-20 text-right text-muted-foreground flex-shrink-0">
-                  <div className="font-light">Церемония</div>
-                  <div className="text-xs">12:00 - 14:00</div>
-                </div>
-                <div className="flex-1 border-l-2 border-accent/30 pl-4 pb-2"></div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-20 text-right text-muted-foreground flex-shrink-0">
-                  <div className="font-light">Праздничный ужин</div>
-                </div>
-                <div className="flex-1 border-l-2 border-accent/30 pl-4 pb-2"></div>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-light mb-6 text-center text-muted-foreground">Детали</h2>
-            <div className="space-y-4">
-              <div className="bg-card/60 p-5 rounded-lg shadow-sm">
-                <p className="text-sm text-muted-foreground">
-                  <strong>Вот те хз?</strong><br />
-                  Да "да", чтобы ты не сказал, второй возможности не появится
-                </p>
-              </div>
-              <div className="bg-card/60 p-5 rounded-lg shadow-sm">
-                <p className="text-sm text-muted-foreground">
-                  <strong>Будут ли конкурсы или викторины?</strong><br />
-                  Свободное да!
-                </p>
-              </div>
-              <div className="bg-card/60 p-5 rounded-lg shadow-sm">
-                <p className="text-sm text-muted-foreground">
-                  <strong>Если дарить?</strong><br />
-                  Можем выйти ты из кубышки только из предоставленных советов
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-light mb-6 text-center text-muted-foreground">Дресс-код</h2>
-            <div className="max-w-sm mx-auto bg-card/60 p-6 rounded-lg shadow-sm">
-              <div className="flex justify-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-white border-2 border-muted"></div>
-                <div className="w-10 h-10 rounded-full bg-gray-200 border-2 border-muted"></div>
-                <div className="w-10 h-10 rounded-full bg-gray-300 border-2 border-muted"></div>
-                <div className="w-10 h-10 rounded-full bg-green-100 border-2 border-muted"></div>
-                <div className="w-10 h-10 rounded-full bg-green-200 border-2 border-muted"></div>
-                <div className="w-10 h-10 rounded-full bg-green-700 border-2 border-muted"></div>
-              </div>
-            </div>
-          </section>
-
-          <section className="relative">
-            <svg className="absolute top-0 left-0 w-full h-24" viewBox="0 0 400 100">
-              <path d="M 0,50 Q 100,20 200,50 T 400,50" fill="none" stroke="hsl(var(--accent))" strokeWidth="2" />
-            </svg>
-            <div className="relative z-10 pt-16">
-              <div className="font-handwriting text-accent text-4xl absolute inset-0 opacity-10 text-center leading-relaxed">
-                we waiting we waiting we waiting
-              </div>
-              <div className="relative z-10 max-w-xs mx-auto transform rotate-2">
-                <div className="bg-white p-3 shadow-lg">
-                  <div className="aspect-[2/3] bg-gray-200 flex items-center justify-center">
-                    <span className="text-gray-400 text-sm">Фото пары</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-light mb-6 text-center text-muted-foreground">Контакты</h2>
-            <div className="max-w-sm mx-auto bg-card/60 p-6 rounded-lg shadow-sm text-center text-sm">
-              <div className="flex justify-center gap-3 mb-4">
-                <div className="w-8 h-8 flex items-center justify-center text-accent">▷</div>
-                <span className="text-muted-foreground">Катя</span>
-              </div>
-              <div className="flex justify-center gap-3 mb-4">
-                <div className="w-8 h-8 flex items-center justify-center text-accent">▷</div>
-                <span className="text-muted-foreground">Рома</span>
-              </div>
-              <div className="flex justify-center gap-3">
-                <div className="w-8 h-8 flex items-center justify-center text-accent">▷</div>
-                <span className="text-muted-foreground">Общий чат</span>
-              </div>
-            </div>
-          </section>
-
-          <section className="text-center pb-8">
-            <div className="font-handwriting text-3xl text-foreground/60 mb-4">
-              анкета гостя
-            </div>
-            <p className="text-sm text-muted-foreground mb-6">
-              Подтвердите ваше присутствие
+          <section className="text-center py-8">
+            <h1 className="text-3xl md:text-4xl font-light mb-4">Дорогие наши<br />друзья и родные!</h1>
+            <p className="text-base md:text-lg text-gray-700 max-w-lg mx-auto leading-relaxed">
+              Это официальное приглашение на нашу свадьбу! А получили вы его потому, 
+              что мы очень хотим видеть вас в этот день рядом с нами!
             </p>
-            <form onSubmit={handleSubmit} className="space-y-3 max-w-sm mx-auto mb-6">
+          </section>
+
+          <section className="py-8">
+            <div className="bg-white border-4 border-gray-900 max-w-md mx-auto p-6 shadow-xl">
+              <h2 className="text-2xl md:text-3xl font-light mb-6 text-center">Август</h2>
+              <div className="grid grid-cols-7 gap-1 text-center text-sm mb-2">
+                {['ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС', 'ПН'].map(day => (
+                  <div key={day} className="text-gray-500 font-medium">{day}</div>
+                ))}
+              </div>
+              <div className="grid grid-cols-7 gap-1">
+                {generateCalendar()}
+              </div>
+            </div>
+            <div className="text-center mt-6 text-xl md:text-2xl font-light">
+              22 августа, 2026 | 12:00
+            </div>
+          </section>
+
+          <section className="py-8 relative">
+            <div 
+              className="absolute inset-0 font-handwriting text-[#DC143C] text-4xl opacity-40 pointer-events-none"
+            >
+              <div className="absolute top-0 left-8 transform -rotate-6">I Love You</div>
+              <div className="absolute top-20 right-12 transform rotate-12">I Love You</div>
+              <div className="absolute bottom-12 left-16 transform rotate-3">I Love You</div>
+            </div>
+
+            <div className="relative z-10">
+              <svg className="w-full max-w-2xl mx-auto mb-8" viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg">
+                <path 
+                  d="M 0,60 Q 200,20 400,60 T 800,60" 
+                  fill="none" 
+                  stroke="#DC143C" 
+                  strokeWidth="3"
+                />
+              </svg>
+
+              <div className="text-center mb-6">
+                <h2 className="text-3xl md:text-4xl font-light mb-4">Место<br />проведения</h2>
+                <p className="text-lg text-gray-700 font-medium">Вертолетка - панорамное кафе</p>
+                <p className="text-base text-gray-600">Самара, Ветвистая ул., 2А</p>
+              </div>
+
+              <div className="flex justify-center mb-8">
+                <button className="bg-[#DC143C] text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-[#B01030] transition-colors shadow-lg">
+                  Как добраться
+                </button>
+              </div>
+
+              <div className="relative transform -rotate-3 hover:rotate-0 transition-transform duration-500 max-w-md mx-auto">
+                <div className="bg-white p-4 shadow-2xl">
+                  <img 
+                    src="https://cdn.poehali.dev/files/1ddceec9-551f-4a0c-b014-035602a1698e.png" 
+                    alt="Место проведения" 
+                    className="w-full aspect-[3/4] object-cover"
+                  />
+                </div>
+              </div>
+
+              <svg className="w-full max-w-2xl mx-auto mt-12" viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg">
+                <path 
+                  d="M 0,60 Q 200,100 400,60 T 800,60" 
+                  fill="none" 
+                  stroke="#DC143C" 
+                  strokeWidth="3"
+                />
+              </svg>
+            </div>
+          </section>
+
+          <section className="py-8">
+            <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
+              <h2 className="text-2xl md:text-3xl font-light text-center mb-6">Анкета гостя</h2>
               <input 
                 type="text" 
                 placeholder="Ваше имя" 
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-3 bg-card/60 border border-muted rounded-lg text-sm"
+                className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-lg text-base focus:border-[#DC143C] focus:outline-none transition-colors"
                 required
               />
               <input 
@@ -271,46 +212,25 @@ const Index = () => {
                 placeholder="Твой номер телефона" 
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full px-4 py-3 bg-card/60 border border-muted rounded-lg text-sm"
+                className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-lg text-base focus:border-[#DC143C] focus:outline-none transition-colors"
               />
               <textarea 
                 placeholder="Что пожелаете" 
-                rows={3}
+                rows={4}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-4 py-3 bg-card/60 border border-muted rounded-lg text-sm"
+                className="w-full px-4 py-3 bg-white border-2 border-gray-300 rounded-lg text-base focus:border-[#DC143C] focus:outline-none transition-colors resize-none"
               />
               <button 
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-4 py-3 bg-accent text-accent-foreground rounded-lg text-sm font-medium hover:bg-accent/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[#DC143C] text-white px-4 py-3 rounded-lg text-lg font-medium hover:bg-[#B01030] transition-colors shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Отправка...' : 'Отправить'}
               </button>
             </form>
           </section>
 
-          <section className="text-center pb-12">
-            <div className="max-w-xs mx-auto transform -rotate-1 mb-8">
-              <div className="bg-white p-3 shadow-lg">
-                <div className="aspect-[3/4] bg-gray-200 flex items-center justify-center">
-                  <span className="text-gray-400 text-sm">Фото пары</span>
-                </div>
-              </div>
-            </div>
-            <div className="font-handwriting text-4xl text-accent mb-2">
-              With Love
-            </div>
-            <div className="text-xl font-light tracking-widest uppercase text-foreground/70">
-              Руслан и Вероника
-            </div>
-            <div className="mt-6 text-sm text-muted-foreground">
-              22 августа 2026
-            </div>
-            <div className="text-xs text-muted-foreground mt-2">
-              {daysUntil > 0 ? `Осталось дней: ${daysUntil}` : 'Сегодня!'}
-            </div>
-          </section>
         </div>
       </div>
     </div>
